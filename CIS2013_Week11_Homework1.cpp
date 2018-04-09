@@ -29,7 +29,10 @@ class car_info{
 		else if(on_off == false){
 			cout << "Currently: Off"<<endl;
 			}
+		cout << endl;
+		cout << endl;
 		}
+		
 		
 	
 	
@@ -45,7 +48,7 @@ class car_running{
 		int speed = 0;
 		
 	void start_engine(){
-		if (car_on == false){
+		if (car_on != true){
 			car_on =true;
 		}
 		else{cout << "Your car is already running!"<<endl;}
@@ -80,6 +83,7 @@ class car_running{
 			turn_right = false;
 			straight = false;
 		}
+		else{cout<<"Your car must be moving to turn!"<<endl;}
 	}
 	
 	void turnRight(){
@@ -88,6 +92,7 @@ class car_running{
 			turn_left = false;
 			straight = false;
 		}
+		else{cout<<"Your car must be moving to turn!"<<endl;}
 	}
 	
 	void goStraight(){
@@ -100,8 +105,8 @@ class car_running{
 
 
 int main(){
-	bool check_run = true;
-	bool check_direction =true;
+	bool check_run = false;
+	bool check_direction =false;
 	bool program_run = true;
 	
 	int action=0;
@@ -121,24 +126,9 @@ int main(){
 	cout << "Enter your cars color: ";
 	cin >> your_car.color;
 	
-	while(check_run){
-		if(your_car_action.car_on == true){
-			your_car.on_off = true;
-			}
-		else if(your_car_action.car_on == false){your_car.on_off = false;}
-	}
+	//while(check_run){}
 	
-	while(check_direction){
-		if(your_car_action.turn_left){
-			your_car.direction = "Turning Left";
-		}
-		if(your_car_action.turn_right){
-			your_car.direction = "Turning right";
-		}
-		if(your_car_action.straight){
-			your_car.direction = "Straight";
-		}
-	}
+	//while(check_direction){}
 
 	while(program_run){
 		cout << "What would you like to do?"<< endl;
@@ -150,14 +140,32 @@ int main(){
 		cout << "Turn Left: 6" << endl;
 		cout << "Go Straight: 7"<< endl;
 	
+		cin >> action;
 	
 	if (action == 1){your_car_action.start_engine();}
 	if (action == 2){your_car_action.stop_engine();}
 	if (action == 3){your_car_action.speed_up();}
 	if (action == 4){your_car_action.speed_down();}
-	if (action == 5){your_car_action.turnLeft();}
-	if (action == 6){your_car_action.turnRight();}
+	if (action == 5){your_car_action.turnRight();}
+	if (action == 6){your_car_action.turnLeft();}
 	if (action == 7){your_car_action.goStraight();}
+	
+	if(your_car_action.car_on == true){
+		your_car.on_off = true;
+	}
+	else if(your_car_action.car_on == false){your_car.on_off = false;}
+		
+	if(your_car_action.turn_left){
+			your_car.direction = "Turning Left";
+	}
+	if(your_car_action.turn_right){
+		your_car.direction = "Turning right";
+	}
+	if(your_car_action.straight){
+		your_car.direction = "Straight";
+	}
+	
+	your_car.current_speed = your_car_action.speed;
 	
 	your_car.print();
 	}
