@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <windows.h>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ class car_info{
 		string direction;
 		
 	void print(){
+		cout << "----------------------------------------------" << endl;
 		cout << "Your car's information is:"<<endl;
 		cout << "Make: " << make <<endl;
 		cout << "Model: " << model <<endl;
@@ -24,11 +26,12 @@ class car_info{
 		cout << "Current direction: " << direction<<endl;
 		
 		if (on_off == true){
-			cout << "Currently: On"<<endl;
+			cout << "Engine currently: On"<<endl;
 		}
 		else if(on_off == false){
-			cout << "Currently: Off"<<endl;
+			cout << "Engine currently: Off"<<endl;
 			}
+		cout << "----------------------------------------------" << endl;
 		cout << endl;
 		cout << endl;
 		}
@@ -125,6 +128,8 @@ int main(){
 	
 	cout << "Enter your cars color: ";
 	cin >> your_car.color;
+	cout << endl;
+	cout << endl;
 	
 	//while(check_run){}
 	
@@ -139,6 +144,7 @@ int main(){
 		cout << "Turn right: 5" << endl;
 		cout << "Turn Left: 6" << endl;
 		cout << "Go Straight: 7"<< endl;
+		cout << "!!!SELF DESTRUCT!!! = 8"<<endl;
 	
 		cin >> action;
 	
@@ -149,6 +155,14 @@ int main(){
 	if (action == 5){your_car_action.turnRight();}
 	if (action == 6){your_car_action.turnLeft();}
 	if (action == 7){your_car_action.goStraight();}
+	if (action == 8){
+		cout <<"!!!SELF DESTRUCT SEQUENCE INITIATED!!!"<<endl;
+		for(int i=10;i>=1;i--){
+			cout <<i<<endl;
+			Sleep(1000);
+		}
+		program_run = false;
+	}
 	
 	if(your_car_action.car_on == true){
 		your_car.on_off = true;
@@ -167,7 +181,10 @@ int main(){
 	
 	your_car.current_speed = your_car_action.speed;
 	
-	your_car.print();
+	if (program_run == false){
+		cout << "Good Bye";
+	}
+	else{your_car.print();}
 	}
 	return 0;
 }
